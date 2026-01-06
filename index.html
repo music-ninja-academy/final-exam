@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Exam | Music Ninja Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="main-wrapper">
+        <section id="welcome-screen" class="card">
+            <div class="badge">Day 7</div>
+            <h1>The Grand Finale Mission</h1>
+            <p>Welcome, Music Ninja! You've traveled through the staff, mastered the rhythm, and found the heart of the piano. Are you ready to claim your Official Diploma? [cite: 518, 519]</p>
+            <button class="btn-primary" onclick="startQuiz()">Accept the Challenge</button>
+        </section>
+
+        <section id="quiz-container" class="card hidden">
+            <div class="progress-bar">
+                <div id="progress" style="width: 0%;"></div>
+            </div>
+            <div class="category-tag" id="category-display">Category</div>
+            <h2 id="question-text">Loading question...</h2>
+            <div id="options-container" class="options-grid">
+                </div>
+        </section>
+
+        <section id="form-diploma" class="card hidden">
+            <div class="success-icon">🏆</div>
+            <h1>Master Level Achieved!</h1>
+            <p>You passed the final test! Enter your details exactly as you want them to appear on your Official Diploma. [cite: 522]</p>
+            
+            <form id="diploma-request">
+                <div class="input-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="E.g. John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" placeholder="Where should we send your PDF?" required>
+                </div>
+                <button type="submit" class="btn-primary">Claim My Diploma</button>
+            </form>
+            <p class="disclaimer">Your diploma will be sent to your email as a high-quality PDF. </p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
