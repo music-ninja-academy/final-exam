@@ -67,6 +67,11 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz() {
+    if (localStorage.getItem("diplomaClaimed") === "true") {
+        alert("You have already claimed your diploma! Check your email inbox.");
+        return; // No deja empezar el quiz
+    }
+    
     document.getElementById('welcome-screen').classList.add('hidden');
     document.getElementById('quiz-container').classList.remove('hidden');
     
@@ -120,12 +125,46 @@ function finishQuiz() {
 }
 
 // --- Manejo del Formulario Final ---
-document.getElementById('diploma-request').addEventListener('submit', function(e) {
+document.getElementById('diploma-request').addEventListener('submit', async function(e) {
     e.preventDefault();
+    
+    // 1. Capturamos los datos y el botón
     const name = document.getElementById('student-name').value;
     const email = document.getElementById('student-email').value;
+    const btn = e.target.querySelector('button'); // El botón de envío
     
-    // Aquí es donde dispararías tu Webhook de Make.com
-    console.log("Requesting diploma for:", name, email);
-    alert(`Congratulations ${name}! Your request has been sent. Check your email soon.`);
+    // URL de tu Webhook de Make.com (¡Pegá la tuya acá!)
+    const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/azcdvrasiy9jjogf6rey8jbtcv9xm4dr";
+
+    // 2. Deshabilitamos el botón para evitar que le den mil clics
+    btn.disabled = true;
+    btn.innerText = "Sending Diploma...";
+
+    try {
+        // 3. Enviamos los datos a Make.com
+        const response = await fetch(MAKE_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                student_name: name,
+                student_email: email,
+                exam_score: score // Usamos la variable global 'score' que ya tenés
+            })
+        });
+
+        if (response.ok) {
+            // 4. Éxito: Guardamos en el navegador que ya lo pidió y avisamos
+            localStorage.setItem("diplomaClaimed", "true");
+            alert(`Congratulations ${name}! Your Master Scroll is being prepared. Check your email ${email} in a few minutes.`);
+            btn.innerText = "Diploma Requested!";
+        } else {
+            throw new Error("Server error");
+        }
+    } catch (error) {
+        // 5. Error: Rehabilitamos el botón para que pruebe de nuevo
+        console.error("Error sending to Make:", error);
+        alert("Oops! Something went wrong. Please try again.");
+        btn.disabled = false;
+        btn.innerText = "Mail My Diploma";
+    }
 });
