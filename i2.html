@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Exam | Music Ninja Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Ajustes generales */
+        body { display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
+        .main-wrapper { flex: 1; }
+
+        /* Nuevo Header */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .brand-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 40px; width: auto; } /* Ajusta el tamaño de tu logo aquí */
+        .company-name { font-weight: 700; font-size: 1.1rem; color: #333; letter-spacing: -0.5px; }
+
+        /* Mejoras en el contenido del Welcome */
+        .hero-illustration {
+            width: 100%;
+            height: 150px;
+            background-color: #f0f4f8; /* Color dummy */
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8898aa;
+            font-size: 0.9rem;
+        }
+        .mission-specs {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .mission-specs ul { margin: 0; padding-left: 1.2rem; }
+        .mission-specs li { margin-bottom: 0.5rem; color: #555; }
+
+        /* Nuevo Footer */
+        .site-footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 5px; }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="brand-container">
+            <img src="https://via.placeholder.com/100x100/333/fff?text=MNA" alt="Music Ninja Logo" class="logo-img">
+            <span class="company-name">Music Ninja Academy</span>
+        </div>
+        <div class="header-actions">
+            <span style="font-size: 0.8rem; color: #666;">Exam Session #992</span>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <section id="welcome-screen" class="card">
+            <div class="badge">Day 7: The Final Step</div>
+            
+            <h1>The Grand Finale Mission</h1>
+            
+            <p>Welcome, Music Ninja! You've traveled through the staff, mastered the rhythm, and found the heart of the piano. Are you ready to claim your Official Diploma?</p>
+            
+            <div class="hero-illustration">
+                [ Insert Hero Image Here ]
+            </div>
+
+            <div class="mission-specs">
+                <strong>📝 Mission Briefing:</strong>
+                <ul>
+                    <li><strong>Objective:</strong> Prove your mastery of Theory & Harmony.</li>
+                    <li><strong>Format:</strong> 10 Multiple Choice Questions.</li>
+                    <li><strong>Passing Score:</strong> 80% is required to graduate.</li>
+                </ul>
+            </div>
+
+            <button class="btn-primary" onclick="startQuiz()">Accept the Challenge</button>
+        </section>
+
+        <section id="quiz-container" class="card hidden">
+            <div class="progress-bar">
+                <div id="progress" style="width: 0%;"></div>
+            </div>
+            <div class="category-tag" id="category-display">Category</div>
+            <h2 id="question-text">Loading question...</h2>
+            <div id="options-container" class="options-grid">
+                </div>
+        </section>
+
+        <section id="form-diploma" class="card hidden">
+            <div class="success-icon">🏆</div>
+            <h1>Master Level Achieved!</h1>
+            <p>You passed the final test! Enter your details exactly as you want them to appear on your Official Diploma.</p>
+            
+            <form id="diploma-request">
+                <div class="input-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="E.g. John Doe" required spellcheck="false">
+                </div>
+                <div class="input-group">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" placeholder="Where should we send your PDF?" required>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-primary">Claim My Diploma</button>
+            </form>
+            <p class="disclaimer">Your diploma will be sent to your email as a high-quality PDF.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Music Ninja Academy. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> • 
+            <a href="#">Terms of Service</a> • 
+            <a href="#">Support</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
