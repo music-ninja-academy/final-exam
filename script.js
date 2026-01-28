@@ -124,22 +124,83 @@ function finishQuiz() {
     }
 }
 
+const FORMSPREE_ID = "xlgnezyo";
+
 const legalTexts = {
     privacy: `
         <h2>Privacy Policy</h2>
-        <p><strong>What data do we collect?</strong><br>To issue your Music Ninja diploma, we only ask for your full name and a valid email address. These are the only personal details we collect on this site.</p>
-        <p><strong>How do we use your information?</strong><br>Your name is used exclusively to print it on your digital diploma PDF, and your email is used to send it to you. We do not sell your data or send spam.</p>
+        <p><strong>Information Collection:</strong> To issue your Music Ninja Academy diploma, we only collect your name and email address. We do not store any other personal or financial data.</p>
+        <p><strong>Data Usage:</strong> Your name is used specifically for the diploma certificate, and your email is used to deliver the PDF. We do not share your information with third parties.</p>
     `,
     terms: `
         <h2>Terms of Service</h2>
-        <p><strong>Content Usage</strong><br>All materials on this website and the Hypernatural brand are our intellectual property. Personal use is allowed, but reselling resources is prohibited.</p>
-        <p><strong>Digital Products</strong><br>Regarding Hypernatural sheet music: since these are immediate download products, we do not offer refunds once the file has been delivered.</p>
+        <p><strong>Educational Content:</strong> All lessons, challenges, and materials within the Music Ninja Academy are for personal, non-commercial use only. Redistribution of our content is prohibited.</p>
+        <p><strong>Symbolic Recognition:</strong> The diploma granted upon completion is a symbolic recognition of your progress. It does not constitute an official academic degree or professional certification.</p>
+        <p><strong>User Conduct:</strong> Users are expected to interact with our platform respectfully. Any attempt to exploit or disrupt the academy services will result in access termination.</p>
     `,
     support: `
-        <h2>Support & Contact</h2>
-        <p><strong>Need a hand, Ninja?</strong><br>If you have questions about the exam or Hypernatural products, we are here to help. Contact us via email and a human will respond within 48 hours.</p>
+        <h2>Support Center</h2>
+        <p>Need help? Send us a message and we'll get back to you.</p>
+        <form id="contact-form" onsubmit="handleSupportSubmit(event)">
+            <input type="text" name="name" id="sup-name" placeholder="Your Name" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff;">
+            <input type="email" name="email" id="sup-email" placeholder="Your Email" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff;">
+            <textarea name="message" id="sup-message" placeholder="How can we help?" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff; height:100px;"></textarea>
+            <button type="submit" id="sup-submit-btn" class="btn-primary" style="width:100%;">Send Message</button>
+        </form>
+        <p id="sup-status" style="margin-top:10px; font-size:0.8rem;"></p>
     `
 };
+
+// Le ponemos 2 min de cooldown entre cada envío de mail
+
+async function handleSupportSubmit(event) {
+    event.preventDefault();
+    
+    const status = document.getElementById('sup-status');
+    const btn = document.getElementById('sup-submit-btn');
+    const lastSent = localStorage.getItem('last_support_sent');
+    const now = Date.now();
+    const cooldown = 2 * 60 * 1000; // 2 minutos
+
+    // 1. Chequeo de Cooldown
+    if (lastSent && (now - lastSent < cooldown)) {
+        const remaining = Math.ceil((cooldown - (now - lastSent)) / 1000);
+        status.style.color = "#ff4444";
+        status.innerText = "Ninja, slow down! Wait " + remaining + " seconds.";
+        return;
+    }
+
+    // 2. Preparar datos
+    const formData = new FormData(event.target);
+    status.style.color = "#ffd700";
+    status.innerText = "Sending to the masters...";
+    btn.disabled = true;
+
+    // 3. Envío Real a Formspree vía Fetch (AJAX)
+    try {
+        const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            status.style.color = "#00ff00";
+            status.innerText = "Message sent! Check your inbox soon.";
+            localStorage.setItem('last_support_sent', Date.now());
+            event.target.reset();
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        status.style.color = "#ff4444";
+        status.innerText = "Oops! Something went wrong. Try again later.";
+    } finally {
+        btn.disabled = false;
+    }
+}
+
+// Fin del cooldown
 
 function openModal(type) {
     document.getElementById('modal-body').innerHTML = legalTexts[type];
