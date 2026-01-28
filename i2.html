@@ -23,8 +23,12 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .brand-container { display: inline; align-items: center; gap: 12px; }
+        .brand-container { display: flex; align-items: center; gap: 12px; }
+        .logo-mna { height: 40px; width: auto; }
         .logo-img { height: 80px; width: auto; } /* Ajusta el tamaño de tu logo aquí */
+
+        .hn-container { display: flex; align-items: right; gap: 12px; }
+        .logo-hn { height: 40px; width: auto; }
         .company-name { font-weight: 700; font-size: 1.1rem; color: #333; letter-spacing: -0.5px; }
 
         /* Mejoras en el contenido del Welcome */
@@ -67,8 +71,13 @@
 
     <header class="site-header">
         <div class="brand-container">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoMNA.png" alt="Music Ninja Logo" class="logo-mna">
             <img src="https://music-ninja-academy.github.io/final-exam/images/MNA-banner.png" alt="Music Ninja Logo" class="logo-img">
           <!--  <span class="company-name">Music Ninja Academy</span> -->
+        </div>
+        <div class="hn-container">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoHypernatural.png" alt="Hypernatural Logo" class="logo-hn">
+            <span class="company-name">Hypernatural</span>
         </div>
         <!--
         <div class="header-actions">
