@@ -124,6 +124,40 @@ function finishQuiz() {
     }
 }
 
+const legalTexts = {
+    privacy: `
+        <h2>Privacy Policy</h2>
+        <p><strong>What data do we collect?</strong><br>To issue your Music Ninja diploma, we only ask for your full name and a valid email address. These are the only personal details we collect on this site.</p>
+        <p><strong>How do we use your information?</strong><br>Your name is used exclusively to print it on your digital diploma PDF, and your email is used to send it to you. We do not sell your data or send spam.</p>
+    `,
+    terms: `
+        <h2>Terms of Service</h2>
+        <p><strong>Content Usage</strong><br>All materials on this website and the Hypernatural brand are our intellectual property. Personal use is allowed, but reselling resources is prohibited.</p>
+        <p><strong>Digital Products</strong><br>Regarding Hypernatural sheet music: since these are immediate download products, we do not offer refunds once the file has been delivered.</p>
+    `,
+    support: `
+        <h2>Support & Contact</h2>
+        <p><strong>Need a hand, Ninja?</strong><br>If you have questions about the exam or Hypernatural products, we are here to help. Contact us via email and a human will respond within 48 hours.</p>
+    `
+};
+
+function openModal(type) {
+    document.getElementById('modal-body').innerHTML = legalTexts[type];
+    document.getElementById('legal-modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('legal-modal').style.display = 'none';
+}
+
+// Cerrar si hacen clic fuera del cuadro
+window.onclick = function(event) {
+    let modal = document.getElementById('legal-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
 // --- Manejo del Formulario Final ---
 document.getElementById('diploma-request').addEventListener('submit', async function(e) {
     e.preventDefault();
