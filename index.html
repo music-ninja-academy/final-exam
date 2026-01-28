@@ -5,15 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Exam | Music Ninja Academy</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Ajustes generales */
+        body { display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
+        .main-wrapper { flex: 1; }
+
+        /* Nuevo Header */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0; /* Eliminamos padding lateral para que el borde sea exacto */
+            max-width: 800px; /* DEBE SER IGUAL AL ANCHO DE TU .CARD */
+            margin: 0 auto; /* Lo centra igual que la tarjeta */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Movemos el centro del grupo MNA sobre la esquina izquierda */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(-25%); 
+        }
+
+        /* Movemos el centro del grupo Hypernatural sobre la esquina derecha */
+        .hn-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(25%);
+        }
+
+        /* Unificamos alturas para evitar saltos visuales */
+        .logo-mna {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-hn {
+            height: 80px;
+            width: auto;
+        }
+
+        .logo-img {
+            height: 50px; /* Igualamos a las anteriores para balancear */
+            width: auto;
+        }
+
+        /* Mejoras en el contenido del Welcome */
+        .hero-illustration {
+            width: 100%;
+            height: 150px;
+            background-color: #f0f4f8; /* Color dummy */
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8898aa;
+            font-size: 0.9rem;
+        }
+        .mission-specs {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .mission-specs ul { margin: 0; padding-left: 1.2rem; }
+        .mission-specs li { margin-bottom: 0.5rem; color: #555; }
+
+        /* Nuevo Footer */
+        .site-footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 5px; }
+    </style>
 </head>
 <body>
 
+    <header class="site-header">
+        <div class="brand-container">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoMNA.png" alt="Music Ninja Logo" class="logo-mna">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/MNA-banner.png" alt="Music Ninja Logo" class="logo-img">
+          <!--  <span class="company-name">Music Ninja Academy</span> -->
+        </div>
+        <div class="hn-container">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoHypernatural.png" alt="Hypernatural Logo" class="logo-hn">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/Hypernatural.png" alt="Hypernatural" class="logo-img">
+        </div>
+        <!--
+        <div class="header-actions">
+            <span style="font-size: 0.8rem; color: #666;">Exam Session #992</span>
+        </div>
+        -->
+    </header>
+
     <main class="main-wrapper">
         <section id="welcome-screen" class="card">
-            <div class="badge">Day 7</div>
+            <div class="badge">Day 7: The Final Step</div>
+            
             <h1>The Grand Finale Mission</h1>
-            <p>Welcome, Music Ninja! You've traveled through the staff, mastered the rhythm, and found the heart of the piano. Are you ready to claim your Official Diploma?</p>
+            
+            <p>Welcome, Music Ninja! You've traveled through the staff, mastered the rhythm, and found the heart of the piano. Now face the final challenge that will take you to the glory.</p>
+            <!--
+            <div class="hero-illustration">
+                [ Insert Hero Image Here ]
+            </div>
+            -->
+            <div class="mission-specs">
+                <strong>📝 Mission Briefing:</strong>
+                <ul>
+                    <li><strong>Objective:</strong> Prove your mastery of Music Theory</li>
+                    <li><strong>Format:</strong> 10 Multiple Choice Questions.</li>
+                    <li><strong>Passing Score:</strong> 80% is required to graduate.</li>
+                </ul>
+            </div>
+
             <button class="btn-primary" onclick="startQuiz()">Accept the Challenge</button>
         </section>
 
@@ -43,9 +161,26 @@
                 </div>
                 <button type="submit" id="submit-btn" class="btn-primary">Claim My Diploma</button>
             </form>
-            <p class="disclaimer">Your diploma will be sent to your email as a high-quality PDF. </p>
+            <p class="disclaimer">Your diploma will be sent to your email as a high-quality PDF.</p>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Music Ninja Academy & Hypernatural. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> • 
+            <a href="#">Terms of Service</a> • 
+            <a href="#">Support</a>
+        </div>
+    </footer>
+
+    <div id="legal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
