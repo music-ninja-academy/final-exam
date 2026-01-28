@@ -14,21 +14,31 @@
 
         /* Nuevo Header */
         .site-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
-       /* Contenedores de marca */
-        .brand-container, .hn-container {
-            display: flex;
-            align-items: center; /* Esto asegura el centrado vertical */
-            gap: 15px;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0; /* Eliminamos padding lateral para que el borde sea exacto */
+    max-width: 800px; /* DEBE SER IGUAL AL ANCHO DE TU .CARD */
+    margin: 0 auto; /* Lo centra igual que la tarjeta */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Movemos el centro del grupo MNA sobre la esquina izquierda */
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(-50%); 
+}
+
+/* Movemos el centro del grupo Hypernatural sobre la esquina derecha */
+.hn-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(50%);
+}
 
         /* Unificamos alturas para evitar saltos visuales */
         .logo-mna, .logo-hn {
