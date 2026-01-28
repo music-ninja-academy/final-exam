@@ -23,13 +23,23 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .brand-container { display: flex; align-items: center; gap: 12px; }
-        .logo-mna { height: 60px; width: auto; }
-        .logo-img { height: 80px; width: auto; } /* Ajusta el tamaño de tu logo aquí */
+       /* Contenedores de marca */
+        .brand-container, .hn-container {
+            display: flex;
+            align-items: center; /* Esto asegura el centrado vertical */
+            gap: 15px;
+        }
 
-        .hn-container { display: flex; align-items: right; gap: 12px; }
-        .logo-hn { height: 60px; width: auto; }
-        .company-name { font-weight: 700; font-size: 1.1rem; color: #333; letter-spacing: -0.5px; }
+        /* Unificamos alturas para evitar saltos visuales */
+        .logo-mna, .logo-hn {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-img {
+            height: 50px; /* Igualamos a las anteriores para balancear */
+            width: auto;
+        }
 
         /* Mejoras en el contenido del Welcome */
         .hero-illustration {
