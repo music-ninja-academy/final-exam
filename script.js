@@ -1,4 +1,4 @@
-// --- Banco de Datos: 100 Preguntas del Examen Ninja (Corregido: Solo Contenido del Libro) ---
+// --- Banco de Datos: 100 Preguntas del Examen Ninja (VERIFICADO: 100% Contenido del Libro) ---
 const allQuestions = [
     // --- DAY 1 & 2: RHYTHM & DURATION (25 Questions) ---
     { cat: "Rhythm", q: "How many beats does a Quarter Note (TA) last?", options: ["1 beat", "2 beats", "4 beats", "1/2 beat"], correct: 0 },
@@ -22,10 +22,10 @@ const allQuestions = [
     { cat: "Rhythm", q: "Which note fills the whole 4-beat measure?", options: ["Quarter Note", "Half Note", "Whole Note", "Eighth Note"], correct: 2 },
     { cat: "Rhythm", q: "Rhythm Math: TA + TA + TA + TA = ?", options: ["2 beats", "3 beats", "4 beats", "5 beats"], correct: 2 },
     { cat: "Rhythm", q: "What is the heartbeat of music called?", options: ["The Pulse/Beat", "The Melody", "The Volume", "The Silence"], correct: 0 },
-    { cat: "Rhythm", q: "Which symbol tells you to play a section again?", options: ["Repeat Sign", "Double Bar Line", "Treble Clef", "Forte"], correct: 0 },
-    { cat: "Rhythm", q: "What does a Repeat Sign look like?", options: ["Two thin lines", "One thick line", "Double bar with two dots", "A zig-zag line"], correct: 2 },
     { cat: "Rhythm", q: "Rhythm Math: Half Note (2) + Quarter Note (1) = ?", options: ["2 beats", "3 beats", "4 beats", "5 beats"], correct: 1 },
     { cat: "Rhythm", q: "Which note is the longest in our Ninja training?", options: ["Whole Note", "Half Note", "Quarter Note", "Eighth Note"], correct: 0 },
+    { cat: "Rhythm", q: "Does a Stem (stick) go up or down?", options: ["Always Up", "Always Down", "It can go both ways", "It never has a stem"], correct: 2 },
+    { cat: "Rhythm", q: "Rhythm Math: Whole Note (4) - Half Note (2) = ?", options: ["1 beat", "2 beats", "3 beats", "4 beats"], correct: 1 },
 
     // --- DAY 3 & 6: THE STAFF & CLEFS (25 Questions) ---
     { cat: "The Staff", q: "How many lines does a music staff have?", options: ["4 lines", "5 lines", "6 lines", "10 lines"], correct: 1 },
@@ -44,8 +44,8 @@ const allQuestions = [
     { cat: "The Staff", q: "In the Treble Clef, which line is the 'G Line' (inside the swirl)?", options: ["1st Line", "2nd Line", "3rd Line", "4th Line"], correct: 1 },
     { cat: "Grand Staff", q: "What connects the Treble and Bass staves together?", options: ["A rope", "A Brace/Bracket", "A bridge", "A heavy line"], correct: 1 },
     { cat: "Grand Staff", q: "Which note is the 'Magic Portal' between the two clefs?", options: ["High C", "Low C", "Middle C", "Floating C"], correct: 2 },
-    { cat: "Grand Staff", q: "How is Middle C written?", options: ["On the 1st line", "In a space", "On a Ledger Line (tiny line)", "Without a head"], correct: 2 },
-    { cat: "The Staff", q: "What is a Ledger Line?", options: ["A very long line", "A tiny line for notes outside the staff", "A curved line", "A double bar"], correct: 1 },
+    { cat: "Grand Staff", q: "How is Middle C written?", options: ["On the 1st line", "In a space", "On its own tiny line", "Without a head"], correct: 2 },
+    { cat: "The Staff", q: "Notes in spaces are like...", options: ["Birds flying", "Faces in windows", "Cars on the road", "Fish in the sea"], correct: 1 },
     { cat: "The Clefs", q: "Another name for the Treble Clef is...", options: ["F Clef", "G Clef", "C Clef", "H Clef"], correct: 1 },
     { cat: "The Clefs", q: "Another name for the Bass Clef is...", options: ["G Clef", "F Clef", "C Clef", "D Clef"], correct: 1 },
     { cat: "The Staff", q: "If a note is in a Space, the next note up is on a...", options: ["Space", "Line", "Rest", "Clef"], correct: 1 },
