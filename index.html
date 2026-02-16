@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Exam | Music Ninja Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo-group">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoMNA.png" alt="MNA Logo" class="logo-icon">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/MNA-banner.png" alt="Music Ninja Academy" class="logo-text">
+        </div>
+        
+        <div class="logo-group">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/LogoHypernatural.png" alt="HN Logo" class="logo-icon">
+            <img src="https://music-ninja-academy.github.io/final-exam/images/Hypernatural.png" alt="Hypernatural" class="logo-text">
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        
+        <section id="welcome-screen" class="card">
+            <div class="badge">Day 7: The Final Step</div>
+            <h1>The Grand Finale</h1>
+            <p>Welcome, Shinobi. You have mastered the staff and the rhythm. Now, prove your knowledge to earn the Black Belt 1st Dan.</p>
+            
+            <div class="mission-brief">
+                <h3>📝 Mission Specs:</h3>
+                <ul>
+                    <li><strong>Goal:</strong> 20 Questions</li>
+                    <li><strong>Passing Score:</strong> 80% (16/20)</li>
+                    <li><strong>Reward:</strong> Official Diploma</li>
+                </ul>
+            </div>
+
+            <button class="btn-primary" onclick="startQuiz()">Start Exam</button>
+        </section>
+
+        <section id="quiz-container" class="card hidden">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+            </div>
+            
+            <div id="category-display" class="category-tag">Category</div>
+            <h2 id="question-text">Loading question...</h2>
+            
+            <div id="options-container" class="options-grid">
+                </div>
+        </section>
+
+        <section id="form-diploma" class="card hidden">
+            <div class="icon-success">🏆</div>
+            <h1>Master Level!</h1>
+            <p>Training complete. Enter your details below to receive your official scroll.</p>
+            
+            <form id="diploma-request">
+                <div class="input-group">
+                    <label>Full Ninja Name</label>
+                    <input type="text" id="student-name" placeholder="e.g. Andres the Master" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>Scroll Destination (Email)</label>
+                    <input type="email" id="student-email" placeholder="email@example.com" required>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-primary">Claim Diploma</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Music Ninja Academy. A Hypernatural Production.</p>
+        <div class="footer-links">
+            <a onclick="openModal('privacy')">Privacy</a>
+            <a onclick="openModal('terms')">Terms</a>
+            <a onclick="openModal('support')">Support</a>
+        </div>
+    </footer>
+
+    <div id="legal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
