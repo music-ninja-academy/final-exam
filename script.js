@@ -184,3 +184,143 @@ function finishQuiz() {
         location.reload(); // Reiniciar
     }
 }
+
+const FORMSPREE_ID = "xlgnezyo";
+
+const legalTexts = {
+    privacy: `
+        <h2>Privacy Policy</h2>
+        <p><strong>Information Collection:</strong> To issue your Music Ninja Academy diploma, we only collect your name and email address. We do not store any other personal or financial data.</p>
+        <p><strong>Data Usage:</strong> Your name is used specifically for the diploma certificate, and your email is used to deliver the PDF. We do not share your information with third parties.</p>
+    `,
+    terms: `
+        <h2>Terms of Service</h2>
+        <p><strong>Educational Content:</strong> All lessons, challenges, and materials within the Music Ninja Academy are for personal, non-commercial use only. Redistribution of our content is prohibited.</p>
+        <p><strong>Symbolic Recognition:</strong> The diploma granted upon completion is a symbolic recognition of your progress. It does not constitute an official academic degree or professional certification.</p>
+        <p><strong>User Conduct:</strong> Users are expected to interact with our platform respectfully. Any attempt to exploit or disrupt the academy services will result in access termination.</p>
+    `,
+    support: `
+        <h2>Support Center</h2>
+        <p>Need help? Send us a message and we'll get back to you.</p>
+        <form id="contact-form" onsubmit="handleSupportSubmit(event)">
+            <input type="text" name="name" id="sup-name" placeholder="Your Name" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff;">
+            <input type="email" name="email" id="sup-email" placeholder="Your Email" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff;">
+            <textarea name="message" id="sup-message" placeholder="How can we help?" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff; height:100px;"></textarea>
+            <button type="submit" id="sup-submit-btn" class="btn-primary" style="width:100%;">Send Message</button>
+        </form>
+        <p id="sup-status" style="margin-top:10px; font-size:0.8rem;"></p>
+    `
+};
+
+// Le ponemos 2 min de cooldown entre cada envío de mail
+
+async function handleSupportSubmit(event) {
+    event.preventDefault();
+    
+    const status = document.getElementById('sup-status');
+    const btn = document.getElementById('sup-submit-btn');
+    const lastSent = localStorage.getItem('last_support_sent');
+    const now = Date.now();
+    const cooldown = 2 * 60 * 1000; // 2 minutos
+
+    // 1. Chequeo de Cooldown
+    if (lastSent && (now - lastSent < cooldown)) {
+        const remaining = Math.ceil((cooldown - (now - lastSent)) / 1000);
+        status.style.color = "#ff4444";
+        status.innerText = "Ninja, slow down! Wait " + remaining + " seconds.";
+        return;
+    }
+
+    // 2. Preparar datos
+    const formData = new FormData(event.target);
+    status.style.color = "#ffd700";
+    status.innerText = "Sending to the masters...";
+    btn.disabled = true;
+
+    // 3. Envío Real a Formspree vía Fetch (AJAX)
+    try {
+        const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            status.style.color = "#00ff00";
+            status.innerText = "Message sent! Check your inbox soon.";
+            localStorage.setItem('last_support_sent', Date.now());
+            event.target.reset();
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        status.style.color = "#ff4444";
+        status.innerText = "Oops! Something went wrong. Try again later.";
+    } finally {
+        btn.disabled = false;
+    }
+}
+
+// Fin del cooldown
+
+function openModal(type) {
+    document.getElementById('modal-body').innerHTML = legalTexts[type];
+    document.getElementById('legal-modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('legal-modal').style.display = 'none';
+}
+
+// Cerrar si hacen clic fuera del cuadro
+window.onclick = function(event) {
+    let modal = document.getElementById('legal-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// --- Manejo del Formulario Final ---
+document.getElementById('diploma-request').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // 1. Capturamos los datos y el botón
+    const name = document.getElementById('student-name').value;
+    const email = document.getElementById('student-email').value;
+    const btn = e.target.querySelector('button'); // El botón de envío
+    
+    // URL de tu Webhook de Make.com (¡Pegá la tuya acá!)
+    const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/azcdvrasiy9jjogf6rey8jbtcv9xm4dr";
+
+    // 2. Deshabilitamos el botón para evitar que le den mil clics
+    btn.disabled = true;
+    btn.innerText = "Sending Diploma...";
+
+    try {
+        // 3. Enviamos los datos a Make.com
+        const response = await fetch(MAKE_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                student_name: name,
+                student_email: email,
+                exam_score: score // Usamos la variable global 'score' que ya tenés
+            })
+        });
+
+        if (response.ok) {
+            // 4. Éxito: Guardamos en el navegador que ya lo pidió y avisamos
+            localStorage.setItem("diplomaClaimed", "true");
+            alert(`Congratulations ${name}! Your Master Scroll is being prepared. Check your email ${email} in a few minutes.`);
+            btn.innerText = "Diploma Requested!";
+        } else {
+            throw new Error("Server error");
+        }
+    } catch (error) {
+        // 5. Error: Rehabilitamos el botón para que pruebe de nuevo
+        console.error("Error sending to Make:", error);
+        alert("Oops! Something went wrong. Please try again.");
+        btn.disabled = false;
+        btn.innerText = "Mail My Diploma";
+    }
+});
