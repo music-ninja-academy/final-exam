@@ -1,0 +1,316 @@
+/* --- 1. VARIABLES NINJA --- */
+:root {
+    --ninja-gold: #ffcc00;
+    --ninja-gold-dim: #cca300;
+    --ninja-black: #121212;
+    --ninja-dark-gray: #1e1e1e;
+    --ninja-light-gray: #2a2a2a;
+    --ninja-red: #ff4757;
+    --text-light: #f5f5f5;
+    --text-dim: #aaaaaa;
+    --transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- 2. RESET Y GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--ninja-black);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+/* Ocultar elementos dinámicos */
+.hidden { display: none !important; }
+
+/* --- 3. HEADER (RESPONSIVO) --- */
+.site-header {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Clave para móviles */
+    gap: 15px;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Alturas base para desktop */
+.logo-icon { height: 50px; width: auto; }
+.logo-text { height: 40px; width: auto; }
+
+/* --- 4. MAIN WRAPPER & CARDS --- */
+.main-wrapper {
+    width: 100%;
+    max-width: 600px; /* Ancho ideal de lectura */
+    padding: 10px 20px;
+    flex: 1; /* Empuja el footer hacia abajo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card {
+    background: var(--ninja-dark-gray);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid var(--ninja-gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 204, 0, 0.1);
+    text-align: center;
+    animation: slideUp 0.5s ease-out;
+    width: 100%;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 5. TIPOGRAFÍA Y UI --- */
+h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--ninja-gold);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+h2 { font-size: 1.4rem; margin-bottom: 25px; min-height: 60px; }
+
+p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.badge {
+    background: var(--ninja-red);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.mission-brief {
+    background: rgba(255,255,255,0.05);
+    text-align: left;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.mission-brief h3 { color: var(--ninja-gold); margin-bottom: 10px; font-size: 1rem; }
+.mission-brief ul { padding-left: 20px; color: var(--text-dim); }
+.mission-brief li { margin-bottom: 5px; }
+
+/* --- 6. QUIZ UI --- */
+.progress-container {
+    background: #333;
+    height: 8px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    background: var(--ninja-gold);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.category-tag {
+    color: var(--ninja-gold);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* --- 7. FORMULARIO --- */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ninja-gold);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    background: var(--ninja-light-gray);
+    border: 1px solid #444;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus {
+    border-color: var(--ninja-gold);
+    background: #333;
+}
+
+.icon-success { font-size: 3rem; margin-bottom: 15px; }
+
+/* --- 8. BOTONES --- */
+.btn-primary {
+    background: var(--ninja-gold);
+    color: var(--ninja-black);
+    border: none;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background: #ffdb4d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5);
+}
+
+.btn-primary:disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-option {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-option:hover {
+    border-color: var(--ninja-gold);
+    background: rgba(255, 204, 0, 0.1);
+}
+
+/* --- 9. FOOTER --- */
+.site-footer {
+    margin-top: auto;
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    border-top: 1px solid #222;
+    width: 100%;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: var(--ninja-gold);
+    margin: 0 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.footer-links a:hover { color: white; }
+
+/* --- 10. MODAL --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--ninja-dark-gray);
+    margin: 10% auto; 
+    padding: 30px; 
+    border: 1px solid var(--ninja-gold); 
+    width: 90%; 
+    max-width: 500px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.close-button {
+    position: absolute; right: 20px; top: 15px;
+    color: var(--ninja-gold); font-size: 28px; cursor: pointer;
+}
+
+/* --- 11. MEDIA QUERIES (EL FIX DEL CELULAR) --- */
+@media (max-width: 600px) {
+    /* Ajuste Header */
+    .site-header {
+        justify-content: center;
+        padding-top: 30px;
+    }
+    
+    .logo-group {
+        margin-bottom: 10px;
+    }
+    
+    /* Achicar logos en móvil */
+    .logo-icon { height: 35px; }
+    .logo-text { height: 28px; }
+
+    /* Ajuste Card */
+    .card {
+        padding: 25px 20px;
+    }
+
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    
+    .btn-option {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
